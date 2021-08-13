@@ -130,7 +130,7 @@ public class HomeController {
             Role role = new Role(user.getUsername(), "ROLE_USER");
             roleRepository.save(role);
         }
-        return "redirect:/";
+        return "redirect:/login";
     }
 
 
