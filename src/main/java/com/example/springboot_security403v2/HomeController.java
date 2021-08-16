@@ -64,6 +64,7 @@ public class HomeController {
     @PostMapping("/processplayer")
     public String processPlayer(@Valid Player player, BindingResult result, Model model, @RequestParam(name="file") MultipartFile file) {
         if(result.hasErrors()) {
+            model.addAttribute("player", player);             // what was I supposed to do here? ****************
             return "addplayer";
         }
         if (file.isEmpty()) {

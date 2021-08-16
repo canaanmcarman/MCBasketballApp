@@ -1,0 +1,9 @@
+body {
+    background-image: url("https://res.cloudinary.com/dnjzvt63c/image/upload/v1629061235/Noah-Sensor-Above-Court_dptk5i.jpg");
+    background-size: cover;
+}
+
+.container {
+    color: white;
+    background-color: #31302f ;
+}
