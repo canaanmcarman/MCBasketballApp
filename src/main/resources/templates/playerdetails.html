@@ -4,6 +4,7 @@
 
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
+    <link href="/css/main.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
@@ -11,11 +12,19 @@
 <div th:replace="base :: nav"></div>
 
 <div class="container">
-    <img th:src="${player.pic}" alt="player" width="200" height="200">
-    <p th:inline="text"><b>NAME:</b> [[${player.fName}]] [[${player.lName}]]</p>
-    <p> <b>AGE:</b> [[${player.age}]]</p>
-    <p th:inline="text"><b>Team:</b> [[${player.team.name}]]</p>
+    <div class="row">
+        <div class="col">
+            <p th:inline="text"><b>NAME:</b> [[${player.fName}]] [[${player.lName}]]</p>
+            <p> <b>AGE:</b> [[${player.age}]]</p>
+            <p th:inline="text"><b>Team:</b> [[${player.team.name}]]</p>
+        </div>
+        <div class="col"><img th:src="${player.pic}" alt="player" width="200" height="200"></div>
+
+
+    </div>
+
 </div>
+<div th:replace="base :: footer-prov"></div>
 
 
 

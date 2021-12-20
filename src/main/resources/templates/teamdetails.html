@@ -4,22 +4,36 @@
 
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
+    <link href="/css/main.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 <div th:replace="base :: nav"></div>
 <div class="container">
-    <h2>The [[${team.city}]] [[${team.name}]]</h2>
-        <ul th:each="player: ${team.players}">
-            <li><b>Name:</b> [[${player.fName}]] [[${player.lName}]]</li>
-            <li><b>Age:</b> [[${player.age}]]</li>
-            <a sec:authorize="hasAnyRole('ADMIN', 'USER')" th:href="@{/playerdetails/{id}(id=${player.id})}"><button type="button" class="btn btn-info">View</button></a>
 
-        </ul>
+    <h2 class="d-flex justify-content-center mb-3">The [[${team.city}]] [[${team.name}]]</h2>
+    <div class="row">
+        <div class="col md-3 mb-3" th:each="player: ${team.players}">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" th:src="${player.pic}" alt="Card image cap" width="200" height="200">
+                <div class="card-body">
+                    <h5 class="card-title">[[${player.fName}]] [[${player.lName}]]</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p><b>Age:</b> [[${player.age}]]</li></p>
+                </div>
+                <div class="card-body">
+                    <a sec:authorize="hasAnyRole('ADMIN', 'USER')" th:href="@{/playerdetails/{id}(id=${player.id})}"><button type="button" class="btn btn-info">View</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-3">
+        <a th:href="@{/addplayer}"><button type="button" class="btn-lg btn-light">Add Player</button></a>
+        <a  class="ml-2" sec:authorize="hasRole('ADMIN')" th:href="@{/updateteam/{id}(id=${team.id})}"><button type="button" class="btn-lg btn-light">Update Team</button></a>
+    </div>
 
-    <a th:href="@{/addplayer}">Add a player</a>
-    <a sec:authorize="hasRole('ADMIN')" th:href="@{/updateteam/{id}(id=${team.id})}">Update team</a>
+
     </div>
 
 
@@ -28,6 +42,7 @@
 
 
 </div>
+<div th:replace="base :: footer-prov"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

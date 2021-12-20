@@ -10,25 +10,29 @@
 </head>
 <body>
 <div th:replace="base :: nav"></div>
-<div class="container mt-4 p-3">
+<div class="container">
+    <div class="row">
 
 
-
-    <div th:each="team: ${teams}">
-        <h2>[[${team.name}]]</h2>
-        <ul>
-            <li th:each="player: ${team.players}">[[${player.fName}]] [[${player.lName}]], [[${player.age}]]</li>
-        </ul>
-        <a th:href="@{/teamdetails/{id}(id=${team.id})}">View Team</a>
-        <a sec:authorize="hasRole('ADMIN')" th:href="@{/updateteam/{id}(id=${team.id})}">Update Team</a>
-        <a sec:authorize="hasRole('ADMIN')" th:href="@{/deleteteam/{id}(id=${team.id})}">Delete Team</a>
+        <div class="col md-4 mb-3 mt-3" th:each="team: ${teams}">
+            <h2>[[${team.name}]]</h2>
+            <ul>
+                <li th:each="player: ${team.players}">[[${player.fName}]] [[${player.lName}]]</li>
+            </ul>
+            <a th:href="@{/teamdetails/{id}(id=${team.id})}"><button type="button" class="btn-sm btn-light">View</button></a>
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{/updateteam/{id}(id=${team.id})}"><button type="button" class="btn-sm btn-light">Update</button></a>
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{/deleteteam/{id}(id=${team.id})}"><button type="button" class="btn-sm btn-light">Delete</button></a>
+        </div>
+        <br>
+        <div class="text-center mt-3 mb-3 ">
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{/addteam}"><button type="button" class="btn-lg btn-light">Add a new team</button></a>
+        </div>
     </div>
-    <br>
-    <a sec:authorize="hasRole('ADMIN')" th:href="@{/addteam}">Add a new team</a>
-
 
 
 </div>
+
+<div th:replace="base :: footer-prov"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
