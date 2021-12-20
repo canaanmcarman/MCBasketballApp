@@ -23,7 +23,7 @@ public class CommandLineRunnerBean implements CommandLineRunner {
     PlayerRepository playerRepository;
 
     public void run(String... args) {
-        boolean commandrunner = false;
+        boolean commandrunner = true;
         if (commandrunner) {
             User user = new User("user", "user@domain.com", "user", "user", "user", true);
             Role userRole = new Role("user", "ROLE_USER");
